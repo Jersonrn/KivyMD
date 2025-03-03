@@ -585,6 +585,20 @@ class MDNavigationBar(CommonElevationBehavior, MDBoxLayout):
         super().__init__(*args, **kwargs)
         Clock.schedule_once(self.set_status_bar_color)
 
+    def get_active_item(self) -> MDNavigationItem | None:
+        """
+        Returns the currently active item in the navigation bar.
+
+        :return: The active :class:`~kivymd.uix.navigationbar.MDNavigationItem`
+                 instance if found, otherwise `None`.
+
+        """
+
+        for child in self.children:
+            if child.active:
+                return child
+        return None
+
     def set_active_item(self, item: MDNavigationItem) -> None:
         """Sets the currently active element on the panel."""
 
